@@ -18,11 +18,12 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import viteLogo from "/vite.svg"; // Importing the logo
 
 const Navbar = () => {
   const { auth } = useSelector((store) => store);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -30,9 +31,17 @@ const Navbar = () => {
   };
 
   return (
-    <div className="border-b  py-4 px-5 flex items-center justify-between">
+    <div className="border-b py-4 px-5 flex items-center justify-between">
       <div className="flex items-center gap-3">
-        <p onClick={()=>navigate("/")} className="cursor-pointer">Project Managment</p>
+        {/* Animated Logo */}
+        <img
+          src={viteLogo}
+          alt="Logo"
+          className="h-8 w-8 animate-spin-slow"
+        />
+        <p onClick={() => navigate("/")} className="cursor-pointer">
+          Pro-Man
+        </p>
         <Dialog>
           <DialogTrigger>
             <Button variant="ghost">New Project</Button>
@@ -45,7 +54,9 @@ const Navbar = () => {
             <CreateProjectForm />
           </DialogContent>
         </Dialog>
-        <Button onClick={()=>navigate("/upgrade_plan")} variant="ghost">Upgrade</Button>
+        <Button onClick={() => navigate("/upgrade_plan")} variant="ghost">
+          Upgrade
+        </Button>
       </div>
 
       <div className="flex gap-3 items-center">
@@ -63,8 +74,7 @@ const Navbar = () => {
             <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
-<p className="lg:block hidden">{auth.user?.fullName} </p>
-        
+        <p className="lg:block hidden">{auth.user?.fullName}</p>
       </div>
     </div>
   );

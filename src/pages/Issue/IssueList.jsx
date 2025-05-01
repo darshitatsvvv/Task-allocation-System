@@ -46,7 +46,7 @@ export function IssueList({ title, status }) {
           <CardContent className="px-2">
             <div className="space-y-2">
               {issue.issues.filter((item)=>item.status==status).map((item) => (
-                <IssueCard item={item} key={item} />
+                <IssueCard item={item} key={item.id} />
               ))}
             </div>
           </CardContent>
